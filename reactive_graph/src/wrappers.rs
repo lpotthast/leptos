@@ -502,6 +502,7 @@ pub mod read {
 
         /// Overriding the default auto implemented [`Read::try_read`] to combine read and track,
         /// to avoid 2 clones and just have 1 in the [`SignalTypes::DerivedSignal`].
+        #[track_caller]
         fn custom_try_read(&self) -> Option<Option<Self::Value>> {
             Some(
                 self.inner
